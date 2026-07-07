@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "可拖拽秒表",
+  "version": "1.0",
+  "description": "可拖动的秒表，单击清零重新计时",
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "css": ["styles.css"]
+    }
+  ]
+}
