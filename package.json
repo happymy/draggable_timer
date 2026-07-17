@@ -1,0 +1,25 @@
+{
+  "name": "draggable_timer",
+  "version": "1.0.0",
+  "description": "一个可拖动的秒表，悬浮在页面上实时计时，单击归零并重新计时。",
+  "main": "content.js",
+  "scripts": {
+    "test": "vitest run --config test/vitest.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/happymy/draggable_timer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/happymy/draggable_timer/issues"
+  },
+  "homepage": "https://github.com/happymy/draggable_timer#readme",
+  "devDependencies": {
+    "jsdom": "^29.1.1",
+    "vitest": "^4.1.10"
+  }
+}

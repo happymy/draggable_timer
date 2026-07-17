@@ -135,17 +135,39 @@ document.addEventListener('touchend', function() {
   if (drag.hasDragged) savePosition(drag.el);
 });
 
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', createStopwatch);
-} else {
-  createStopwatch();
+function reparentStopwatch() {
+  const el = document.getElementById('draggable-stopwatch');
+  if (!el) return;
+  const fs = document.fullscreenElement || document.webkitFullscreenElement;
+  if (fs && el.parentNode !== fs) {
+    fs.appendChild(el);
+  } else if (!fs && el.parentNode !== document.body) {
+    document.body.appendChild(el);
+  }
 }
+
+function onReady() {
+  createStopwatch();
+  if (document.fullscreenElement || document.webkitFullscreenElement) {
+    reparentStopwatch();
+  }
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', onReady);
+} else {
+  onReady();
+}
+
+document.addEventListener('fullscreenchange', reparentStopwatch);
+document.addEventListener('webkitfullscreenchange', reparentStopwatch);
 
 if (typeof MutationObserver !== 'undefined') {
   const observer = new MutationObserver(function(mutations) {
     for (const mutation of mutations) {
       if (mutation.type === 'childList' && !document.getElementById('draggable-stopwatch')) {
         createStopwatch();
+        reparentStopwatch();
         break;
       }
     }
